@@ -89,7 +89,9 @@ class T5Model(nn.Module):
         self.dropout = config.dropout if config.training else 0.0
         self.dtype = dtype
 
+        # TODO(khatir): Modify this layer.
         self.token_embeddings = nn.Embedding(config.vocab_size, config.embedding_dim, config.padding_idx)
+        
         self.encoder = T5Encoder(
             d_model=config.embedding_dim,
             nhead=config.num_attention_heads,
@@ -101,6 +103,7 @@ class T5Model(nn.Module):
             layer_norm_eps=config.layer_norm_eps,
             relative_attention_num_buckets=config.relative_attention_num_buckets,
             relative_attention_max_distance=config.relative_attention_max_distance,
+            # TODO(khatir): here...
             token_embeddings=self.token_embeddings,
             device=device,
             dtype=dtype,
@@ -218,8 +221,10 @@ class T5Model(nn.Module):
                 # T5 implemention uses padding idx to start sequence. Want to ignore this when masking
                 decoder_padding_mask[:, 0] = False
 
+            # TODO(khatir): here as well.
             decoder_embeddings = self.token_embeddings(decoder_tokens)
             decoder_outputs = self.decoder(
+                # TODO(khatir): here as well.
                 decoder_embeddings,
                 memory=encoder_output,
                 tgt_mask=decoder_mask,
