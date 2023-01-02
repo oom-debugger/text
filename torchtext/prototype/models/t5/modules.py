@@ -809,11 +809,13 @@ class T5Encoder(nn.Module):
         layer_norm_eps: float = 1e-6,
         relative_attention_num_buckets: int = 32,
         relative_attention_max_distance: int = 128,
+        # TODO(khatir): here as well...
         token_embeddings: Optional[nn.Module] = None,
         device: Optional[torch.device] = None,
         dtype=None,
     ) -> None:
         super().__init__()
+        # TODO(khatir): here as well...
         self.token_embeddings = token_embeddings
         self.layers = nn.ModuleList(
             [
