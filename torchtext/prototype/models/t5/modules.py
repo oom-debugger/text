@@ -872,6 +872,7 @@ class T5Encoder(nn.Module):
             assert (
                 self.token_embeddings is not None and tgt is not None
             ), "Must provide `token_embeddings` and `tgt` if not providing already embedded tokens."
+            # TODO(khatir): this need to call the encoder
             embedded_tgt = self.token_embeddings(tgt)
 
         output = self.dropout1(embedded_tgt)
