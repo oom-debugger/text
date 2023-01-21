@@ -13,7 +13,7 @@ on:
         required: true
         type: string
       ref:
-        description: 'Reference to checkout, defaults to empty'
+        description: "Reference to checkout, defaults to empty"
         default: ""
         required: false
         type: string
@@ -39,17 +39,17 @@ on:
           - macos
           - all
       ref:
-        description: 'Reference to checkout, defaults to empty'
+        description: "Reference to checkout, defaults to empty"
         default: ""
         required: false
         type: string
-
 jobs:
   validate-binaries:
-    uses: pytorch/builder/.github/workflows/validate-domain-library.yml@main
+    uses: pytorch/test-infra/.github/workflows/validate-domain-library.yml@main
     with:
       package_type: "conda,wheel"
       os: ${{ inputs.os }}
       channel: ${{ inputs.channel }}
       repository: "pytorch/text"
-      smoke_test: "./.github/scripts/validate_binaries.sh"
+      smoke_test: "source ./.github/scripts/validate_binaries.sh"
+      install_torch: true
